@@ -356,7 +356,7 @@ class OneDriveUploader:
             
             # Upload file
             filename = Path(file_path).name
-            upload_url = f"https://graph.microsoft.com/v1.0/me/drive/root:/{onedrive_folder}/{filename}:/content"
+            upload_url = f"https://graph.microsoft.com/v1.0/users/hemanth.yarraguravagari@leapgen.ai/drive/root:/{onedrive_folder}/{filename}:/content"
             
             with open(file_path, 'rb') as f:
                 file_content = f.read()
@@ -446,7 +446,7 @@ def main():
         
         if file_id:
             # Share with Parind and Kumar
-            user_emails = ['parind@example.com', 'kumar@example.com']  # Replace with actual emails
+            user_emails = ['Parind.Raval@leapgen.ai', 'Kumar.Konduru@leapgen.ai', 'hemanth.yarraguravagari@leapgen.ai', 'Anurag.D@leapgen.ai']  # Replace with actual emails
             uploader.share_with_users(file_id, user_emails)
     
     logger.info("Job scraping and export process completed")

@@ -43,7 +43,7 @@ class Config:
     
     # OneDrive settings
     ONEDRIVE_FOLDER_NAME = "Job Scraping Results"
-    SHARE_USERS = ['Parind.Raval@leapgen.ai', 'Kumar.Konduru@leapgen.ai', 'hemanth.yarraguravagari@leapgen.ai']
+    SHARE_USERS = ['Parind.Raval@leapgen.ai', 'Kumar.Konduru@leapgen.ai', 'hemanth.yarraguravagari@leapgen.ai', 'Anurag.D@leapgen.ai']
     
     # File settings
     OUTPUT_FILENAME_TEMPLATE = "job_scraping_results_{timestamp}.xlsx"
