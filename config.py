@@ -57,52 +57,6 @@ class Config:
             'tenant_id': os.getenv('MICROSOFT_TENANT_ID', 'YOUR_TENANT_ID')
         }
 
-# requirements.txt content
-REQUIREMENTS = """
-requests>=2.28.0
-pandas>=1.5.0
-openpyxl>=3.0.10
-python-dotenv>=0.19.0
-pathlib>=1.0.1
-"""
-
-# .env template
-ENV_TEMPLATE = """
-# Microsoft Graph API credentials for OneDrive integration
-MICROSOFT_CLIENT_ID=your_client_id_here
-MICROSOFT_CLIENT_SECRET=your_client_secret_here
-MICROSOFT_TENANT_ID=your_tenant_id_here
-
-# Optional: Custom configuration
-LOG_LEVEL=INFO
-MAX_JOBS_PER_COMPANY=100
-"""
-
-# setup.py for easy installation
-SETUP_PY = """
-from setuptools import setup, find_packages
-
-setup(
-    name="job-scraping-tool",
-    version="1.0.0",
-    description="Job scraping and export tool for LeapGen AI",
-    author="Anurag & Anusha",
-    packages=find_packages(),
-    install_requires=[
-        "requests>=2.28.0",
-        "pandas>=1.5.0",
-        "openpyxl>=3.0.10",
-        "python-dotenv>=0.19.0"
-    ],
-    python_requires=">=3.8",
-    entry_points={
-        'console_scripts': [
-            'job-scraper=job_scraper:main',
-        ],
-    },
-)
-"""
-
 # Save these files
 def create_project_files():
     """Create all necessary project files"""
