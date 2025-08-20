@@ -32,30 +32,30 @@ import threading
 import concurrent.futures
 from functools import lru_cache
 
-# # Add this function after your imports
-# def get_config():
-#     """Get configuration from Streamlit secrets or environment variables"""
-#     try:
-#         # Try Streamlit secrets first (for deployed app)
-#         return {
-#             'client_id': st.secrets["MICROSOFT_CLIENT_ID"],
-#             'client_secret': st.secrets["MICROSOFT_CLIENT_SECRET"], 
-#             'tenant_id': st.secrets["MICROSOFT_TENANT_ID"]
-#         }
-#     except:
-#         # Fallback to environment variables (for local development)
-#         load_dotenv()
-#         return {
-#             'client_id': os.getenv('MICROSOFT_CLIENT_ID'),
-#             'client_secret': os.getenv('MICROSOFT_CLIENT_SECRET'),
-#             'tenant_id': os.getenv('MICROSOFT_TENANT_ID')
-#         }
+# Add this function after your imports
+def get_config():
+    """Get configuration from Streamlit secrets or environment variables"""
+    try:
+        # Try Streamlit secrets first (for deployed app)
+        return {
+            'client_id': st.secrets["MICROSOFT_CLIENT_ID"],
+            'client_secret': st.secrets["MICROSOFT_CLIENT_SECRET"], 
+            'tenant_id': st.secrets["MICROSOFT_TENANT_ID"]
+        }
+    except:
+        # Fallback to environment variables (for local development)
+        load_dotenv()
+        return {
+            'client_id': os.getenv('MICROSOFT_CLIENT_ID'),
+            'client_secret': os.getenv('MICROSOFT_CLIENT_SECRET'),
+            'tenant_id': os.getenv('MICROSOFT_TENANT_ID')
+        }
 
-# # Then in your main function, replace the existing config loading with:
-# config = get_config()
-# client_id = config['client_id']
-# client_secret = config['client_secret']
-# tenant_id = config['tenant_id']
+# Then in your main function, replace the existing config loading with:
+config = get_config()
+client_id = config['client_id']
+client_secret = config['client_secret']
+tenant_id = config['tenant_id']
 
 # Suppress warnings and configure
 warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
