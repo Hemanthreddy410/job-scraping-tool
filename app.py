@@ -1422,42 +1422,9 @@ def main():
             else:
                 st.error("❌ Excel creation failed")
     
-    # Auto-refresh notice
-    st.markdown("---")
-    st.info("💡 **Tip**: This app searches across 12+ major job portals with OPTIMIZED settings for faster execution while still finding 100-300+ C2C opportunities!")
-    
-    # Job Portal Info
-    st.markdown("""
-    ### 🌐 **12+ Supported Job Portals (OPTIMIZED FOR SPEED):**
-    
-    **🏆 Tier 1 - High Volume Portals (Optimized):**
-    - 🔍 **Indeed** - 5 pages, 100+ jobs per search (Optimized from 10 pages)
-    - 💼 **LinkedIn** - Professional network, 3 pages per query (Optimized)
-    - 🎲 **Dice** - Tech contract specialists, multiple approaches
-    - 📮 **ZipRecruiter** - High volume aggregator, 4 pages per term
-    
-    **🥈 Tier 2 - Professional Portals:**
-    - 🏢 **Greenhouse** - Top tech companies (20+ companies)
-    - ⚡ **Lever** - High-growth startups (15+ companies)  
-    - 👹 **Monster** - Contract focus, 3 pages per search
-    - 🏗️ **CareerBuilder** - Established portal, multiple searches
-    
-    **🥉 Tier 3 - Specialized Portals:**
-    - 🌐 **RemoteOK** - Remote specialists, 3 API endpoints
-    - 🔄 **FlexJobs** - Flexible work opportunities
-    - 📄 **SimplyHired** - Job aggregator, optimized limits
-    - 💼 **Upwork** - Freelance projects, 12 skill categories
-    - 👼 **AngelList** - Startup ecosystem
-    
-    
-    # Footer
-    st.markdown("""
-    <div style="text-align: center; color: #666; padding: 1rem;">
-        <p>⚡ <strong>OPTIMIZED High-Volume C2C AI/ML Job Scraper</strong> | 12+ Portals • Speed Optimized • High Volume • C2C Filtering • Automated Sharing</p>
-    </div>
-    """, unsafe_allow_html=True)
 
 
 if __name__ == "__main__":
     main()
+
 
