@@ -113,7 +113,7 @@ st.markdown("""
 class FastJobScraper:
     """Optimized job scraper with parallel processing, caching, C2C filtering, and multiple job portals"""
     
-    def _init_(self):
+    def __init__(self):
         self.target_roles = [
             'AI Engineer', 'Machine Learning Engineer', 'ML Engineer', 'MLOps Engineer',
             'Data Engineer', 'Senior Data Engineer', 'Principal Data Engineer',
@@ -539,7 +539,7 @@ class FastJobScraper:
                 try:
                     headers = {
                         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-                        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,/;q=0.8'
+                        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
                     }
                     
                     params = {
@@ -659,7 +659,7 @@ class FastJobScraper:
                         
                         headers = {
                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-                            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,/;q=0.8',
+                            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
                             'Accept-Language': 'en-US,en;q=0.5',
                             'Accept-Encoding': 'gzip, deflate',
                             'Connection': 'keep-alive',
@@ -852,10 +852,10 @@ class FastJobScraper:
         
         # Show sample analysis
         if stats['sample_reasons']:
-            st.write("*Sample Job Analysis:*")
+            st.write("**Sample Job Analysis:**")
             for sample in stats['sample_reasons']:
                 status = "✅" if sample['is_c2c'] else "❌"
-                st.write(f"{status} *{sample['company']}* - {sample['title'][:50]}...")
+                st.write(f"{status} **{sample['company']}** - {sample['title'][:50]}...")
                 st.write(f"   📝 {sample['reason']}")
                 st.write("---")
 
@@ -996,9 +996,9 @@ class FastJobScraper:
         for i, (source, count) in enumerate(scraper_stats.items()):
             with cols[i % 4]:
                 if count > 0:
-                    st.success(f"✅ *{source}*: {count} jobs")
+                    st.success(f"✅ **{source}**: {count} jobs")
                 else:
-                    st.warning(f"⚠ *{source}*: {count} jobs")
+                    st.warning(f"⚠️ **{source}**: {count} jobs")
         
         # Show C2C source breakdown if we found any
         if self.jobs_data:
@@ -1031,24 +1031,24 @@ class FastJobScraper:
         
         # Show warning if low results
         if c2c_found < 5:
-            st.warning("⚠ *Low C2C Results Found!* This could be due to:")
+            st.warning("⚠️ **Low C2C Results Found!** This could be due to:")
             st.write("- Some job boards may be blocking automated requests")
             st.write("- C2C filter might be too strict")
             st.write("- Market conditions (fewer contract positions available)")
             st.write("- Some APIs may have changed")
             
             if st.checkbox("🔧 Show debug info for troubleshooting"):
-                st.write("*Raw scraper results:*")
+                st.write("**Raw scraper results:**")
                 for source, count in scraper_stats.items():
                     st.write(f"- {source}: {count} jobs found")
                 
                 if unique_jobs:
-                    st.write("*Sample job titles found (before C2C filtering):*")
+                    st.write("**Sample job titles found (before C2C filtering):**")
                     sample_titles = [job.get('job_title', 'No title') for job in unique_jobs[:10]]
                     for title in sample_titles:
                         st.write(f"- {title}")
         else:
-            st.success(f"🎉 *Great Success!* Found {c2c_found} C2C opportunities across {len(c2c_breakdown)} job portals!")
+            st.success(f"🎉 **Great Success!** Found {c2c_found} C2C opportunities across {len(c2c_breakdown)} job portals!")
 
     def create_excel_fast(self) -> bytes:
         """Fast Excel creation with C2C job data"""
@@ -1095,7 +1095,7 @@ class FastJobScraper:
 class FastOneDriveUploader:
     """Optimized OneDrive uploader with auto-retry"""
     
-    def _init_(self, client_id: str, client_secret: str, tenant_id: str):
+    def __init__(self, client_id: str, client_secret: str, tenant_id: str):
         self.client_id = client_id
         self.client_secret = client_secret
         self.tenant_id = tenant_id
@@ -1280,7 +1280,7 @@ def main():
             scrape_time = time.time() - scrape_start
             
             if not scraper.jobs_data:
-                st.warning("⚠ No C2C jobs found!")
+                st.warning("⚠️ No C2C jobs found!")
                 return
             
             # Display results
@@ -1300,7 +1300,7 @@ def main():
             # Phase 2: Auto Upload
             st.markdown("""
             <div class="auto-upload-status">
-                <h3>☁ PHASE 2: AUTO ONEDRIVE UPLOAD</h3>
+                <h3>☁️ PHASE 2: AUTO ONEDRIVE UPLOAD</h3>
                 <p>Uploading C2C jobs and sharing automatically...</p>
             </div>
             """, unsafe_allow_html=True)
@@ -1324,7 +1324,7 @@ def main():
                 uploader = FastOneDriveUploader(client_id, client_secret, tenant_id)
                 
                 if uploader.authenticate_fast(target_user):
-                    upload_status.text("☁ Uploading C2C jobs...")
+                    upload_status.text("☁️ Uploading C2C jobs...")
                     upload_progress.progress(0.6)
                     
                     share_link = uploader.upload_and_share_fast(excel_bytes, filename, team_emails)
@@ -1349,7 +1349,7 @@ def main():
                     with col1:
                         st.metric("🕒 Upload Time", f"{upload_time:.1f}s")
                     with col2:
-                        st.metric("⏱ Total Time", f"{total_time:.1f}s")
+                        st.metric("⏱️ Total Time", f"{total_time:.1f}s")
                     with col3:
                         st.metric("📧 Team Shared", len(team_emails))
                     with col4:
@@ -1368,7 +1368,7 @@ def main():
                     
                     # Download option
                     st.download_button(
-                        label="⬇ Download C2C Jobs Backup",
+                        label="⬇️ Download C2C Jobs Backup",
                         data=excel_bytes,
                         file_name=filename,
                         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -1384,4 +1384,46 @@ def main():
                         # Show some C2C indicators found
                         st.subheader("🎯 C2C Keywords Found:")
                         c2c_indicators = []
-                        for job in sc
+                        for job in scraper.jobs_data[:5]:  # Show first 5 jobs
+                            desc = job.get('job_description', '').lower()
+                            emp_type = job.get('employment_type', '').lower()
+                            text_to_check = f"{desc} {emp_type}"
+                            
+                            found_keywords = [kw for kw in scraper.c2c_keywords if kw in text_to_check]
+                            if found_keywords:
+                                c2c_indicators.extend(found_keywords)
+                        
+                        unique_indicators = list(set(c2c_indicators))
+                        if unique_indicators:
+                            st.info(f"**Found C2C indicators:** {', '.join(unique_indicators[:10])}")
+                else:
+                    st.error("❌ OneDrive authentication failed")
+            else:
+                st.error("❌ Excel creation failed")
+    
+    # Auto-refresh notice
+    st.markdown("---")
+    st.info("💡 **Tip**: This app searches across 7 major job portals, automatically filters for C2C roles, uploads to OneDrive and shares with your team. Check your OneDrive for the latest multi-portal C2C job results!")
+    
+    # Job Portal Info
+    st.markdown("""
+    ### 🌐 **Supported Job Portals:**
+    - 🏢 **Greenhouse** - Top tech companies
+    - ⚡ **Lever** - High-growth startups  
+    - 🔍 **Indeed** - Largest job board
+    - 🎲 **Dice** - Tech-focused platform
+    - 🌐 **RemoteOK** - Remote opportunities
+    - 👼 **AngelList** - Startup ecosystem
+    - 💼 **Upwork** - Freelance projects
+    """)
+    
+    # Footer
+    st.markdown("""
+    <div style="text-align: center; color: #666; padding: 1rem;">
+        <p>⚡ <strong>Multi-Portal C2C AI/ML Job Scraper</strong> | 7 Portals • C2C Filtering • Automated Sharing</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+
+if __name__ == "__main__":
+    main()
