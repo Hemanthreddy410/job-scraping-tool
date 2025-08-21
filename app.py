@@ -1,11 +1,4 @@
-#!/usr/bin/env python3
-"""
-OPTIMIZED High-Volume C2C Job Scraper Application
-12+ Job Portals + Fixed deprecations + Optimized speed + C2C filtering + Auto OneDrive upload
 
-File: optimized_job_scraper_app.py
-Usage: streamlit run optimized_job_scraper_app.py
-"""
 
 import streamlit as st
 import requests
@@ -1456,19 +1449,6 @@ def main():
     - 💼 **Upwork** - Freelance projects, 12 skill categories
     - 👼 **AngelList** - Startup ecosystem
     
-    **📊 Optimized Volume Targets:**
-    - **Total Jobs Scraped:** 500-1000+ (Optimized)
-    - **Unique After Dedup:** 300-600+  
-    - **C2C Opportunities:** 100-300+ (Still High Volume!)
-    - **Execution Time:** 60-90 seconds (Much Faster!)
-    
-    **⚡ Performance Improvements:**
-    - ✅ Fixed all BeautifulSoup deprecation warnings
-    - ⚡ Reduced excessive page limits while maintaining high volume
-    - 🚀 Optimized thread pool sizes for better performance
-    - ⏱️ Reduced timeouts and improved error handling
-    - 🎯 Balanced speed vs results for optimal user experience
-    """)
     
     # Footer
     st.markdown("""
@@ -1480,3 +1460,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
